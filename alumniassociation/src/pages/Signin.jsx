@@ -17,7 +17,7 @@ const Signin = () => {
             <form action="" onSubmit={submithandler} className='flex flex-col items-center justify-center gap-3 w-full'>
                 <input type="email" placeholder='Enter your email here...' required className='border-black border-2 rounded-md w-full text-lg' value={email} onChange={(e) => setemail(e.target.value)}/>
                 <input type="password" placeholder='Enter your password here...' required className='border-black border-2 rounded-md w-full text-lg' value={password} onChange={(e) => setpassword(e.target.value)}/>
-                <select name="" id="" required className='border-black border-2 rounded-md text-lg self-start' value={role} onchange={(e) => setrole(e.target.value)}>
+                <select name="" id="" required className='border-black border-2 rounded-md text-lg self-start' value={role} onChange={(e) => setrole(e.target.value)}>
                     <option value="">Select Role</option>
                     <option value="student">College</option>
                     <option value="alumni">Alumni</option>
