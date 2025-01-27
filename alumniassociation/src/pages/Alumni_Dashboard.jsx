@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 
 const Alumni_Dashboard = () => {
-
-  const [searchresult, setsearchresult] = useState('')
+  const [searchresult, setsearchresult] = useState("");
   return (
     <>
       <Navbar />
@@ -38,13 +37,30 @@ const Alumni_Dashboard = () => {
               alt="postimage"
             />
           </div>
+
+          <div className="flex items-center justify-around mt-4 border-t pt-4">
+            <ul className="flex gap-6 text-gray-600 justify-evenly">
+              <li className="flex items-center gap-2 cursor-pointer hover:text-blue-500">
+                <i className="ri-thumb-up-line "></i>
+                <span>Like</span>
+              </li>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-blue-500">
+                <i className="ri-message-2-line"></i>
+                <span>Comment</span>
+              </li>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-blue-500">
+                <i className="ri-share-forward-line"></i>
+                <span>Share</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        
+
         <div className="bg-white flex-grow rounded-lg shadow-lg p-4 h-1/2 w-[30%] border-gray-300 hover:border-gray-400 border-1 flex flex-col gap-4">
           <h1 className="font-semibold text-xl">Message</h1>
           <div className="flex justify-between items-center gap-2 w-full border rounded-md p-1 border-gray-300 pb-2">
             <input
-            onChange={(e) => setsearchresult(e.target.value)}
+              onChange={(e) => setsearchresult(e.target.value)}
               className="outline-none text-lg flex-grow"
               type="text"
               placeholder="Search here..."
@@ -60,13 +76,17 @@ const Alumni_Dashboard = () => {
               />
               <div className="">
                 <h4 className="font-medium">Bhavesh Mulchandani</h4>
-                <p className="font-thin text-gray-500">this is the last messge</p>
+                <p className="font-thin text-gray-500">
+                  this is the last messge
+                </p>
               </div>
             </div>
 
             <div className="flex flex-col items-center justify-center">
-            <span className="text-gray-400 text-sm">19:10</span>
-            <span className="bg-blue-700 rounded-full text-white font-semibold text-xs w-5 h-5 flex items-center justify-center">5</span>
+              <span className="text-gray-400 text-sm">19:10</span>
+              <span className="bg-blue-700 rounded-full text-white font-semibold text-xs w-5 h-5 flex items-center justify-center">
+                5
+              </span>
             </div>
           </div>
         </div>
