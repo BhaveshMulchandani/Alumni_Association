@@ -38,63 +38,6 @@ const Alumni_Dashboard = () => {
               alt="postimage"
             />
           </div>
-
-          {/* second post */}
-          <div className="flex items-center gap-4">
-            <img
-              className="rounded-full w-16 h-16 object-cover"
-              src="https://i.pinimg.com/736x/39/7f/b1/397fb1bf6d3d18ce234b5f992e401388.jpg"
-              alt="profileimage"
-            />
-            <div className="flex flex-col leading-tight">
-              <span className="font-bold text-xl">Bhavesh Mulchandani</span>
-              <span className="text-lg text-gray-500">Software Engineer</span>
-            </div>
-          </div>
-          <div className="flex flex-col gap-4">
-            <p className="text-lg">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Architecto, ipsum perferendis doloremque odit nisi dolorem harum
-              quibusdam earum fugiat consequatur reprehenderit. Placeat optio in
-              nisi nesciunt cupiditate assumenda quo, illum, distinctio est
-              quasi doloribus eius dolor aliquid soluta suscipit architecto
-              nihil esse debitis id excepturi cum maxime quaerat alias ullam?
-            </p>
-            <img
-              className="rounded-md w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
-              src="https://i.pinimg.com/236x/dc/bf/cb/dcbfcb3bf47a0717fbedb7b1cf0d8db2.jpg"
-              alt="postimage"
-            />
-          </div>
-
-          {/* third post */}
-
-          <div className="flex items-center gap-4">
-            <img
-              className="rounded-full w-16 h-16 object-cover"
-              src="https://i.pinimg.com/736x/39/7f/b1/397fb1bf6d3d18ce234b5f992e401388.jpg"
-              alt="profileimage"
-            />
-            <div className="flex flex-col leading-tight">
-              <span className="font-bold text-xl">Bhavesh Mulchandani</span>
-              <span className="text-lg text-gray-500">Software Engineer</span>
-            </div>
-          </div>
-          <div className="flex flex-col gap-4">
-            <p className="text-lg">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Architecto, ipsum perferendis doloremque odit nisi dolorem harum
-              quibusdam earum fugiat consequatur reprehenderit. Placeat optio in
-              nisi nesciunt cupiditate assumenda quo, illum, distinctio est
-              quasi doloribus eius dolor aliquid soluta suscipit architecto
-              nihil esse debitis id excepturi cum maxime quaerat alias ullam?
-            </p>
-            <img
-              className="rounded-md w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
-              src="https://i.pinimg.com/236x/dc/bf/cb/dcbfcb3bf47a0717fbedb7b1cf0d8db2.jpg"
-              alt="postimage"
-            />
-          </div>
         </div>
         
         <div className="bg-white flex-grow rounded-lg shadow-lg p-4 h-1/2 w-[30%] border-gray-300 hover:border-gray-400 border-1 flex flex-col gap-4">
