@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import logo from  '../assets/logo.png'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
+
+  const navigate = useNavigate()
 
   return ( 
    
@@ -25,6 +28,9 @@ const Login = () => {
              
               setemail('')
               setpassword('')
+
+              navigate('/dashboard')
+
   
             }} action="" className='w-3/4 mt-8'>
   
@@ -46,7 +52,7 @@ const Login = () => {
 
               <input 
               type="submit" 
-              className='mt-10 bg-pink-900 w-full p-3 text-white :: hover:font-semibold  text-3xl rounded-md' value={"Register"} 
+              className='mt-10 bg-pink-900 w-full p-3 text-white :: hover:font-semibold  text-3xl rounded-md' value={"Login"} 
               />
 
             </form>
