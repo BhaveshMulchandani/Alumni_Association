@@ -1,13 +1,47 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../componenets/Navbar";
+import Post from "../componenets/Post";
+
+// Profile picture
+
+// Name
+
+// Email
+
+// Role (Alumni/Student)
+
+// Current Company (for Alumni)
+
+// Edit Profile button → Modal ya separate edit page.
 
 const Profile = () => {
   return (
     <>
-    <div>
-      
-    </div>
-    </>
-  )
-}
+      <Navbar />
 
-export default Profile
+      <div className="p-10 flex items-center gap-10 relative">
+        <button className="absolute top-3 right-16 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+          Edit Profile
+        </button>
+        <img
+          className="h-52 w-52 rounded-full object-cover"
+          src="https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHByb2ZpbGUlMjBwaWN0dXJlfGVufDB8fDB8fHww"
+          alt="profilepic"
+        />
+        <div>
+          <h1 className="font-bold text-4xl">Bhavesh Mulchandani</h1>
+          <h3 className="font-light text-xl">Software Enginner</h3>
+          <h3 className="font-light text-xl">Amazone</h3>
+        </div>
+      </div>
+
+      <hr className="h-2 color-black"/>
+
+      <div className="mt-10 flex justify-center">
+        <Post/>
+      </div>
+    </>
+  );
+};
+
+export default Profile;
