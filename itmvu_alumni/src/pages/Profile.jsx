@@ -37,6 +37,10 @@ const Profile = () => {
 
       <hr className="h-2 color-black"/>
 
+      <h1 className="flex justify-center text-4xl text-red-700 font-bold">edit to make student profile page</h1>
+      <h1 className="flex justify-center text-4xl text-red-700 font-thin">post is not valid right now</h1>
+
+
       <div className="mt-10 flex justify-center">
         <Post/>
       </div>

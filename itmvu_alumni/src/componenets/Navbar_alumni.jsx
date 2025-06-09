@@ -33,10 +33,10 @@ const Navbar = () => {
               </li>
             </Link>
 
-            <Link to="/event">
+            <Link to="/college">
               <li className="flex flex-col justify-center items-center">
-                Events
-                <i class="ri-calendar-fill"></i>
+                College
+                <i class="ri-graduation-cap-fill"></i>
               </li>
             </Link>
 

@@ -12,6 +12,7 @@ const Signup = () => {
   const [passingyear, setpassingyear] = useState('')
   const [stream, setstream] = useState('')
   const [password, setpassword] = useState('')
+  const [role, setrole] = useState('student')
 
   const navigate = useNavigate()
 
@@ -79,6 +80,12 @@ const Signup = () => {
             value={password}
             onChange={(e)=>setpassword(e.target.value)}
             />
+
+            <select name="role" value={role} onChange={(e)=>setrole(e.target.value)}   className='rounded-md w-full h-14 border-2 border-black hover:border-pink-900 text-3xl px-4 mt-3'>
+              <option value="alumni">alumni</option>
+              <option value="student">student</option>
+            </select>
+
             <input 
             type="submit" 
             className='mt-10 bg-pink-900 w-full p-3 text-white :: hover:font-semibold  text-3xl rounded-md' value={"Register"} 
