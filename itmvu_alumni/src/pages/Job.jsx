@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Navbar from "../componenets/Navbar";
+import Navbar_alumni from "../componenets/Navbar_alumni";
 
 const Job = () => {
   const [search, setsearch] = useState("");
   return (
     <>
-      <Navbar />
+      <Navbar_alumni />
       <div>
         <div className="flex flex-col items-center justify-center ">
           <div className="w-[85%] h-96 m-5 rounded-md flex flex-col justify-center items-center bg-red-200 gap-5">

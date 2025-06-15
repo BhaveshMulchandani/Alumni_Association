@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar from '../componenets/Navbar'
+import Navbar_alumni from '../componenets/Navbar_alumni'
 
 const Home = () => {
   return (
     <>
-    <Navbar/>
+    <Navbar_alumni/>
     </>
   )
 }

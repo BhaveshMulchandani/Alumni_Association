@@ -1,26 +1,14 @@
 import React from "react";
-import Navbar from "../componenets/Navbar";
+import Navbar_alumni from "../componenets/Navbar_alumni";
 import Post from "../componenets/Post";
-
-// Profile picture
-
-// Name
-
-// Email
-
-// Role (Alumni/Student)
-
-// Current Company (for Alumni)
-
-// Edit Profile button → Modal ya separate edit page.
 
 const Profile = () => {
   return (
     <>
-      <Navbar />
+      <Navbar_alumni />
 
       <div className="p-10 flex items-center gap-10 relative">
-        <button className="absolute top-3 right-16 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+        <button className="absolute top-3 right-16 bg-pink-700 text-white px-4 py-2 rounded-md hover:bg-pink-900 transition">
           Edit Profile
         </button>
         <img

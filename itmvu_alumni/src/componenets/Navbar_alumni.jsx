@@ -33,10 +33,10 @@ const Navbar = () => {
               </li>
             </Link>
 
-            <Link to="/college">
+            <Link to="/post">
               <li className="flex flex-col justify-center items-center">
-                College
-                <i class="ri-graduation-cap-fill"></i>
+                Create_Post
+                <i class="ri-add-fill"></i>
               </li>
             </Link>
 
@@ -44,6 +44,20 @@ const Navbar = () => {
               <li className="flex flex-col justify-center items-center">
                 Job
                 <i class="ri-briefcase-4-fill"></i>
+              </li>
+            </Link>
+
+            <Link to="/mentorship">
+              <li className="flex flex-col justify-center items-center">
+                Mentorship
+                <i class="ri-team-fill"></i>
+              </li>
+            </Link>
+
+            <Link to="/donate">
+              <li className="flex flex-col justify-center items-center">
+                Donation
+                <i class="ri-hand-coin-fill"></i>
               </li>
             </Link>
 

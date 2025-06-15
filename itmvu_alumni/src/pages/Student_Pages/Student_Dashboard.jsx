@@ -1,11 +1,11 @@
-import React from "react";
-import Navbar_alumni from "../componenets/Navbar_alumni";
+import React from 'react'
+import Navbar_student from "../componenets/Navbar_student";
 import Post from "../componenets/Post";
 
-const Dashboard = () => {
+const Student_Dashboard = () => {
   return (
     <>
-      <Navbar_alumni />
+      <Navbar_student />
       <div>
         <h1 className="text-pink-600 flex justify-center mt-5 text-3xl font-semibold">
           Welcome Back Bhavesh Mulchandani
@@ -54,7 +54,7 @@ const Dashboard = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Student_Dashboard
