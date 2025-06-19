@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar_alumni from '../componenets/Navbar_alumni'
+import Navbar_student from '../componenets/Navbar_student'
 
 const Events = () => {
   return (
     <>
-    <Navbar_alumni/>
+    <Navbar_student/>
     </>
   )
 }

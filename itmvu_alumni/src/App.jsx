@@ -1,24 +1,25 @@
-import React from 'react'
-import Navbar_student from './componenets/Navbar_student'
-// import Signup from './pages/Signup'
-// import Login from './pages/Login'
-// import {Routes,Route } from 'react-router-dom'
-// import Dashboard from './pages/Dashboard'
-// import Job from './pages/Job'
-// import Profile from './pages/Profile'
-// import Events from './pages/Events'
-// import Home from './pages/Home'
-// import Create_Post from './pages/Create_Post'
-// import Mentorship from './pages/Mentorship'
-// import Donation from './pages/Donation'
+import {Routes,Route } from 'react-router-dom'
+import Student_Dashboard from './pages/Student_Pages/Student_Dashboard'
+import Dashboard from './pages/Dashboard'
+import Signup from './pages/Signup'
+import Login from './pages/Login'
+import Job from './pages/Job'
+import Profile from './pages/Profile'
+import Events from './pages/Events'
+import Home from './pages/Home'
+import Create_Post from './pages/Create_Post'
+import Mentorship from './pages/Mentorship'
+import Donation from './pages/Donation'
+import Student_Profile from './pages/Student_Pages/Student_Profile'
+import Student_job from './pages/Student_Pages/Student_job'
+import Student_Post from './pages/Student_Pages/Student_Post'
 
 
 
 const App = () => {
   return (
     <>
-      {/* <Routes>
-        <Route path='/' element={<Dashboard/>}/>
+       <Routes>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
@@ -28,10 +29,12 @@ const App = () => {
         <Route path='/post' element={<Create_Post/>}/>
         <Route path='/mentorship' element={<Mentorship/>}/>
         <Route path='/donate' element={<Donation/>}/>
-      </Routes> */}
+        <Route path='/student_dashboard' element={<Student_Dashboard/>}/>
+        <Route path='/student_profile' element={<Student_Profile/>}/>
+        <Route path='/student_job' element={<Student_job/>}/>
+        <Route path='/student_Post' element={<Student_Post/>}/>
 
-       <Navbar_student/>
-    
+      </Routes> 
     </>
   )
 }

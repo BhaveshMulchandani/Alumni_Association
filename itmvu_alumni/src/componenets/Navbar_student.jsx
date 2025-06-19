@@ -26,10 +26,17 @@ const Navbar = () => {
 
         <div>
           <ul className="flex gap-7 font-semibold text-lg text-white cursor-pointer">
-            <Link to="/">
+            <Link to="/student_dashboard">
               <li className="flex flex-col justify-center items-center">
                 Home
                 <i class="ri-home-7-fill"></i>
+              </li>
+            </Link>
+
+            <Link to="/Student_Post">
+              <li className="flex flex-col justify-center items-center">
+                Create_Post
+                <i class="ri-add-fill"></i>
               </li>
             </Link>
 
@@ -40,14 +47,14 @@ const Navbar = () => {
               </li>
             </Link>
 
-            <Link to="/job">
+            <Link to="/Student_job">
               <li className="flex flex-col justify-center items-center">
                 Job
                 <i class="ri-briefcase-4-fill"></i>
               </li>
             </Link>
 
-            <Link to="/profile">
+            <Link to="/Student_Profile">
               <li className="flex flex-col justify-center items-center">
                 Profile
                 <i class="ri-user-3-fill"></i>

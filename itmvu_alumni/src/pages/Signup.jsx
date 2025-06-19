@@ -38,6 +38,8 @@ const Signup = () => {
             setstream('')
             setpassword('')
 
+            localStorage.setItem('role',role)
+
             navigate('/login')
 
           }} action="" className='w-3/4 mt-8'>

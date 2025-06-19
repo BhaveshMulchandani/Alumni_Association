@@ -1,6 +1,5 @@
 import React from "react";
 import Navbar_alumni from "../componenets/Navbar_alumni";
-import Post from "../componenets/Post";
 
 const Profile = () => {
   return (
@@ -30,7 +29,6 @@ const Profile = () => {
 
 
       <div className="mt-10 flex justify-center">
-        <Post/>
       </div>
     </>
   );
