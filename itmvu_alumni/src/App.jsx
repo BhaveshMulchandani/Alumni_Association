@@ -16,10 +16,14 @@ import Student_Post from './pages/Student_Pages/Student_Post'
 
 
 
+
 const App = () => {
+
+  const role = localStorage.getItem("role");
   return (
     <>
        <Routes>
+        <Route path='/' element={<Home/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
@@ -33,7 +37,6 @@ const App = () => {
         <Route path='/student_profile' element={<Student_Profile/>}/>
         <Route path='/student_job' element={<Student_job/>}/>
         <Route path='/student_Post' element={<Student_Post/>}/>
-
       </Routes> 
     </>
   )
