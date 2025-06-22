@@ -2,60 +2,173 @@ import React, { useState } from "react";
 import Navbar_alumni from "../componenets/Navbar_alumni";
 
 const Job = () => {
-  const [search, setsearch] = useState("");
+
+  const [jobtitle, setjobtitle] = useState('')
+  const [companyname, setcompanyname] = useState('')
+  const [location,setlocation] = useState('')
+  const [jobtype, setjobtype] = useState('Full-Time')
+  const [experience, setexperience] = useState(0)
+  const [salary, setsalary] = useState(10000)
+  const [description, setdescription] = useState('')
+  const [url, seturl] = useState('')
   return (
     <>
-      <Navbar_alumni />
-      <div>
-        <div className="flex flex-col items-center justify-center ">
-          <div className="w-[85%] h-96 m-5 rounded-md flex flex-col justify-center items-center bg-red-200 gap-5">
-            <span className="text-5xl font-light mt-8">
-              Modernizing the job
-            </span>
-            <span className="text-5xl font-light mt-1">Search Experience</span>
-            <input
-              type="text"
-              placeholder="Search here..."
-              value={search}
-              onChange={(e) => setsearch(e.target.value)}
-              className="w-1/2 rounded-full bg-white p-2 mt-3 outline-none "
-            />
-            <button className="bg-red-500 text-white rounded-md p-3 mt-2 hover:bg-red-600">
-              Search
-            </button>
+      <Navbar_alumni/>
+      <div className="mx-auto px-6 py-28 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center space-x-3 mb-4">
+            <div className="w-14 h-14 bg-gradient-to-br from-pink-400 to-pink-500 rounded-lg flex items-center justify-center">
+              <i className="ri-briefcase-3-line text-3xl text-white"></i>
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold text-gray-800">
+                Post New Job Opportunity
+              </h2>
+              <p className="text-gray-600 font-thin">
+                Share career opportunities with students and fellow alumni
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div className="flex flex-col md:flex-row gap-5 justify-center items-center mb-2">
-          {/* Card 1 */}
-          <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 w-80 shadow-sm">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <img
-                  className="w-10 h-10 object-cover rounded-full"
-                  src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29tcGFueSUyMGxvZ298ZW58MHx8MHx8fDA%3D"
-                  alt="Ruang Guru"
-                />
-                <h2 className="font-semibold">Walks Wagon</h2>
-              </div>
+          <div className="mt-5 bg-white rounded-lg border border-pink-100">
+            <div className="p-2 space-y-6">
+              <h2 className="text-xl font-semibold text-gray-800">
+                Job Details
+              </h2>
+
+              <form action="" className="space-y-6" onSubmit={
+                (e) =>{
+                  e.preventDefault()
+                }
+              }>
+                <div className="flex flex-col space-y-2">
+                  <label className="text-gray-700 font-medium">
+                    Job Title *
+                  </label>
+                  <input
+                    type="text"
+                    className="outline-none border border-pink-200 focus:border-pink-400 rounded-lg p-3"
+                    placeholder="e.g software engineer,ml engineer..."
+                    value={jobtitle}
+                    onChange={(e) =>{
+                      setjobtitle(e.target.value)
+                    }}
+                  />
+                </div>
+
+                <div className="flex flex-col space-y-2">
+                  <label className="text-gray-700 font-medium">
+                    Company Name *
+                  </label>
+                  <input
+                    type="text"
+                    className="outline-none border border-pink-200 focus:border-pink-400 rounded-lg p-3"
+                    placeholder="e.g google,microsoft,meta..."
+                    value={companyname}
+                    onChange={(e) =>{
+                      setcompanyname(e.target.value)
+                    }}
+                  />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6 mt-6">
+                  <div className="flex flex-col space-y-2">
+                    <label className="text-gray-700 font-medium">
+                      Location *
+                    </label>
+                    <input
+                      type="text"
+                      className="outline-none border border-pink-200 focus:border-pink-400 rounded-lg p-3"
+                      placeholder="e.g New York,NY or Remote..."
+                      value={location}
+                      onChange={(e) =>{
+                        setlocation(e.target.value)
+                      }}
+                    />
+                  </div>
+
+                  <div className="flex flex-col space-y-2">
+                    <label className="text-gray-700 font-medium">
+                      Job Type*
+                    </label>
+                    <select
+                      className="outline-none border border-pink-200 focus:border-pink-400 rounded-lg p-3"
+                      name="Select job type" value={jobtype} onChange={(e) => setjobtype(e.target.value)}
+                    >
+                      <option value="Full-Time">Full-Time</option>
+                      <option value="Internship">Internship</option>
+                      <option value="Part-Time">Part-Time</option>
+                      <option value="Remote">Remote</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6 mt-6">
+                  <div className="flex flex-col space-y-2">
+                    <label className="text-gray-700 font-medium">
+                      Experience Required *
+                    </label>
+                    <input
+                      type="number"
+                      className="outline-none border border-pink-200 focus:border-pink-400 rounded-lg p-3"
+                      placeholder="e.g 2 (for 2 years of experience)"
+                      value={experience}
+                      onChange={(e)=>setexperience(Number(e.target.value))}
+                    />
+                  </div>
+
+                  <div className="flex flex-col space-y-2">
+                    <label className="text-gray-700 font-medium">
+                      Salary Range (Optional)
+                    </label>
+                    <input
+                      type="number"
+                      className="outline-none border border-pink-200 focus:border-pink-400 rounded-lg p-3"
+                      placeholder="e.g $80,000 - $120,000"
+                      value={salary}
+                      onChange={(e) => setsalary(Number(e.target.value))}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col space-y-2">
+                  <label className="text-gray-700 font-medium">
+                    Job Description *
+                  </label>
+                  <textarea
+                    className="outline-none border border-pink-200 focus:border-pink-400 rounded-lg p-3"
+                    placeholder="Describe the role,responsibilities,requirements, and what makes this opportunity special..."
+                    value={description}
+                    onChange={(e) => setdescription(e.target.value)}
+                  />
+                </div>
+
+                <div className="flex flex-col space-y-2">
+                  <label className="text-gray-700 font-medium">
+                    Application Link *
+                  </label>
+                  <input
+                    type="url"
+                    className="outline-none border border-pink-200 focus:border-pink-400 rounded-lg p-3"
+                    placeholder="https://company.com/careers/job-id"
+                    value={url}
+                    onChange={(e) => seturl(e.target.value)}
+                  />
+                </div>
+
+                <div className="flex justify-end space-x-4 pt-6">
+                  <button className="border border-pink-200 text-gray-600 hover:bg-pink-50 rounded-md p-2 text-base">
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="bg-gradient-to-r from-pink-400 to bg-pink-500 hover:to-pink-600 text-white px-8 rounded-lg text-base"
+                  >
+                    Post Job
+                  </button>
+                </div>
+              </form>
             </div>
-            <h1 className="text-xl font-semibold mb-2">UI/UX Researcher</h1>
-            <div className="text-gray-600 text-sm space-y-1 mb-4">
-              <div className="flex justify-between">
-                <span>📍Jakarta, Indonesia</span>
-                <span>Full-time</span>
-              </div>
-              <div className="flex justify-between">
-                <span>🎓Education</span>
-                <span>💰$280/monthly</span>
-              </div>
-            </div>
-            <button className="w-full bg-black text-white py-2 rounded-full mb-2">
-              Apply
-            </button>
-            <p className="text-xs text-blue-400 text-center">
-              POSTED 2 DAY AGO
-            </p>
           </div>
         </div>
       </div>
