@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Navbar_alumni from "../componenets/Navbar_alumni";
+import Donation_Type from "../componenets/Donation_Type";
+import Donation_Amount from "../componenets/Donation_Amount";
 
 const Donation = () => {
   const [amount, setamount] = useState(null);
@@ -27,7 +29,7 @@ const Donation = () => {
 
           <div className="grid grid-cols-2 mt-8 gap-4">
             <div className="bg-white rounded-lg border border-pink-200 p-6">
-              <div className="text-center">
+              <div className="text-center mt-1">
                 <h2 className="text-2xl text-gray-800 font-semibold">
                   Your Contribution Matters
                 </h2>
@@ -38,73 +40,10 @@ const Donation = () => {
               </div>
 
               {/* Amount Section */}
-              <div className="space-y-4 mt-6">
-                <h2 className="text-lg font-semibold text-gray-800">
-                  Donation Amount (₹)
-                </h2>
-                <div className="grid grid-cols-3 gap-3">
-                  {[500, 1000, 1500].map((value) => (
-                    <button
-                      key={value}
-                      onClick={() => setamount(value)}
-                      className={`h-12 text-base font-semibold border rounded-lg transition-colors ${
-                        amount === value
-                          ? "bg-pink-600 text-white border-pink-600"
-                          : "bg-gray-50 text-gray-800 border-pink-200 hover:border-pink-300"
-                      }`}
-                    >
-                      ₹ {value}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg">
-                    ₹
-                  </span>
-                  <input
-                    type="number"
-                    min={500}
-                    placeholder="Enter minimum ₹500"
-                    className="w-full pl-8 pr-4 py-3 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-lg"
-                    value={amount || ""}
-                    onChange={(e) => setamount(Number(e.target.value))}
-                  />
-                </div>
-              </div>
+              <Donation_Amount />
 
               {/* Donation Type */}
-              <div className="mt-6">
-                <label className="text-lg font-semibold text-gray-800 mb-4 block">
-                  Donation Type
-                </label>
-                <div className="space-y-1">
-                  <div
-                    className="border rounded-lg p-4 cursor-pointer transition-colors border-pink-200 hover:border-pink-300 hover:bg-pink-25"
-                    onClick={() => setDonationType("scholarship")}
-                  >
-                    <label className="flex items-center space-x-3 cursor-pointer w-full">
-                      <input
-                        type="radio"
-                        name="donationType"
-                        id="scholarship"
-                        className="accent-pink-600 w-5 h-5"
-                        checked={donationType === "scholarship"}
-                        onChange={() => setDonationType("scholarship")}
-                      />
-                      <i className="ri-award-line text-2xl text-pink-600"></i>
-                      <div>
-                        <span className="font-semibold text-gray-800">
-                          Scholarship Fund
-                        </span>
-                        <p className="text-sm text-gray-600">
-                          Support needy and meritorious students
-                        </p>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-              </div>
+              <Donation_Type />
 
               {/* Optional Message */}
               <div className="mt-6">
@@ -115,7 +54,7 @@ const Donation = () => {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Share a message, dedication, or tell us what inspired you to give back..."
-                  className="w-full outline-none border border-pink-200 focus:ring-pink-500 focus:border-pink-500 min-h-[100px] rounded-lg p-2"
+                  className="w-full outline-none border border-pink-200 focus:ring-pink-500 focus:border-pink-500 min-h-[100px] rounded-lg p-2 overflow-hidden text-light text-gray-600 text-lg"
                 ></textarea>
               </div>
 
@@ -130,9 +69,9 @@ const Donation = () => {
                 </button>
 
                 {amount && donationType && (
-                  <p className="text-center text-gray-600 mt-3">
-                    You're about to donate ₹{amount.toLocaleString()} for
-                    Scholarship Fund
+                  <p className="text-center text-gray-600 mt-3 text-base leading-relaxed">
+                    You're about to donate ₹{amount.toLocaleString()} for{" "}
+                    {donationType}.
                   </p>
                 )}
               </div>
@@ -140,7 +79,44 @@ const Donation = () => {
 
             {/* Right Side (Future Content) */}
             <div className="bg-white rounded-lg border border-pink-200 p-6">
-              {/* Leave empty for now */}
+              <div className="flex gap-2">
+                <i className="ri-time-line text-pink-500 text-2xl"></i>
+                <h2 className="text-2xl text-gray-800 font-semibold">
+                  Recent Donation History
+                </h2>
+              </div>
+              <p className="text-gray-600 mt-1">
+                Your recent Contribution to the college
+              </p>
+              <div className="mt-6 border border-pink-200 hover:border-pink-300 rounded-lg w-full">
+                <div>
+                  <div className="flex items-center gap-3 py-1 px-4">
+                    <span className="text-pink-600 font-bold text-3xl">
+                      ₹5,000
+                    </span>
+                    <div className="flex items-center gap-1 text-green-700 text-base">
+                      <i className="ri-checkbox-circle-line"></i>
+                      <span>Completed</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center py-1 px-4">
+                    <span className="flex items-center gap-2">
+                      <i className="ri-building-4-line text-base text-gray-700"></i>
+                      <h2 className="text-base text-gray-700">
+                        Infrastructure
+                      </h2>
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <i className="ri-calendar-line text-base text-gray-700"></i>
+                      <h2 className="text-base text-gray-700">15 June 2025</h2>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <hr className="border-t border-pink-100 mt-6 mb-4" />
+              <button className="w-full border border-pink-200 hover:border-pink-300  hover:bg-gray-50 rounded-lg text-pink-600 mt-3 p-2 text-lg">
+                View full transaction History
+              </button>
             </div>
           </div>
         </div>
