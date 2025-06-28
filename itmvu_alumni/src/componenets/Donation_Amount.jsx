@@ -4,7 +4,7 @@ const Donation_Amount = () => {
   const [amount, setamount] = useState(null);
   return (
     <>
-      <div className="space-y-4 mt-6">
+      <div className="space-y-4 mt-6 z-0">
         <h2 className="text-lg font-semibold text-gray-800">
           Donation Amount (₹)
         </h2>

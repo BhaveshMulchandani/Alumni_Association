@@ -18,6 +18,7 @@ const Donation_Type = () => {
                 type="radio"
                 className="accent-pink-600 w-5 h-5"
                 checked={donationType === "scholarship"}
+                onChange={()=>setdonationType("scholarship")}
               />
               <i className="ri-award-line text-2xl text-pink-600"></i>
               <div>
@@ -39,6 +40,7 @@ const Donation_Type = () => {
                 type="radio"
                 className="accent-pink-600 w-5 h-5"
                 checked={donationType === "event"}
+                 onChange={() => setdonationType("event")}
               />
               <i className="ri-calendar-event-line text-2xl text-pink-600"></i>
               <div>
@@ -58,6 +60,7 @@ const Donation_Type = () => {
                 type="radio"
                 className="accent-pink-600 w-5 h-5"
                 checked={donationType === "infrastructure"}
+                onChange={() => setdonationType("infrastructure")}
               />
               <i className="ri-building-4-line text-2xl text-pink-600"></i>
               <div>
@@ -79,6 +82,7 @@ const Donation_Type = () => {
                 type="radio"
                 className="accent-pink-600 w-5 h-5"
                 checked={donationType === "generalfund"}
+                onChange={() => setdonationType("generalfund")}
               />
               <i className="ri-hand-heart-line text-2xl text-pink-600"></i>
               <div>

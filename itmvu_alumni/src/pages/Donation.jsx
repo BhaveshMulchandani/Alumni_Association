@@ -119,6 +119,7 @@ const Donation = () => {
               </button>
             </div>
           </div>
+          <p className="text-base italic text-gray-500 flex justify-center mt-6">"Education is the most powerful weapon which you can use to change the world." - Nelson Mandela</p>
         </div>
       </div>
     </>
