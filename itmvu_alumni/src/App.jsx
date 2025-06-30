@@ -7,15 +7,13 @@ import Job from './pages/Job'
 import Profile from './pages/Profile'
 import Events from './pages/Events'
 import Home from './pages/Home'
-import Create_Post from './pages/Create_Post'
+import Create_Post from './componenets/Create_Post'
 import Mentorship from './pages/Mentorship'
 import Donation from './pages/Donation'
 import Student_Profile from './pages/Student_Pages/Student_Profile'
 import Student_job from './pages/Student_Pages/Student_job'
 import Student_Post from './pages/Student_Pages/Student_Post'
-
-
-
+import Post from './pages/Post'
 
 const App = () => {
 
@@ -37,6 +35,7 @@ const App = () => {
         <Route path='/student_profile' element={<Student_Profile/>}/>
         <Route path='/student_job' element={<Student_job/>}/>
         <Route path='/student_Post' element={<Student_Post/>}/>
+        <Route path='/alumni_Post' element={<Post/>}/>
       </Routes> 
     </>
   )

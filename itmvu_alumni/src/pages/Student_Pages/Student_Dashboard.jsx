@@ -1,11 +1,11 @@
 import React from 'react'
-import Navbar from '../../componenets/Navbar_student';
+import Navbar_student from '../../componenets/Navbar_student';
 
 const Student_Dashboard = () => {
   return (
     <>
-      <Navbar/>
-      <div>
+      <Navbar_student/>
+      <div className='py-28'>
         <h1 className="text-pink-600 flex justify-center mt-5 text-3xl font-semibold">
           Welcome Back Bhavesh Mulchandani
         </h1>
@@ -70,7 +70,7 @@ const Student_Dashboard = () => {
                 <input
                   type="text"
                   placeholder="Search here..."
-                  className="w-full p-2 pr-10 rounded-md outline-none font-medium"
+                  className="w-full p-2 pr-10 rounded-md outline-none font-medium z-0"
                 />
                 <i className="ri-search-2-line absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
               </div>

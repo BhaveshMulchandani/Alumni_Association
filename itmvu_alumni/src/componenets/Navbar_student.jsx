@@ -6,7 +6,7 @@ const Navbar = () => {
   const [search, setsearch] = useState("");
   return (
     <>
-      <div className="w-full bg-pink-900 h-20 flex px-4 justify-around items-center fixed">
+      <div className="w-full bg-pink-900 h-20 flex px-4 justify-around items-center fixed z-50">
         <div>
           <img src={logo} alt="logo" className="h-13" />
         </div>

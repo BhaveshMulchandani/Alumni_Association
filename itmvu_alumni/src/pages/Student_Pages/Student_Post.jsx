@@ -1,8 +1,13 @@
 import React from 'react'
+import Navbar_student from '../../componenets/Navbar_student'
+import Create_Post from '../../componenets/Create_Post'
 
 const Student_Post = () => {
   return (
-    <div>Student_Post</div>
+    <>
+    <Navbar_student/>
+    <Create_Post/>
+    </>
   )
 }
 

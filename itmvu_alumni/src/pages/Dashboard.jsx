@@ -6,7 +6,7 @@ const Dashboard = () => {
   return (
     <>
       <Navbar_alumni />
-      <div>
+      <div className="py-28">
         <h1 className="text-pink-600 flex justify-center mt-5 text-3xl font-semibold">
           Welcome Back Bhavesh Mulchandani
         </h1>
