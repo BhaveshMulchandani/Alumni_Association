@@ -5,7 +5,7 @@ import Signup from './pages/Signup'
 import Login from './pages/Login'
 import Job from './pages/Job'
 import Profile from './pages/Profile'
-import Events from './pages/Events'
+import Events from './pages/Student_Pages/Events'
 import Home from './pages/Home'
 import Create_Post from './componenets/Create_Post'
 import Mentorship from './pages/Mentorship'
@@ -21,7 +21,7 @@ const App = () => {
   return (
     <>
        <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/' element={<Signup/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>

@@ -26,7 +26,7 @@ const Navbar = () => {
 
         <div>
           <ul className="flex gap-7 font-semibold text-lg text-white cursor-pointer">
-            <Link to="/">
+            <Link to="/dashboard">
               <li className="flex flex-col justify-center items-center">
                 Home
                 <i class="ri-home-7-fill"></i>
