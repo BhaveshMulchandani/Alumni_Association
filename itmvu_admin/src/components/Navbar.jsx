@@ -36,10 +36,10 @@ const Navbar = () => {
               </li>
             </Link>
 
-            <Link to="/Post">
+            <Link to="/verify_user">
               <li className="flex flex-col justify-center items-center">
-                Create_Post
-                <i class="ri-add-fill"></i>
+                verify_user
+                <i class="ri-group-line"></i>
               </li>
             </Link>
 
