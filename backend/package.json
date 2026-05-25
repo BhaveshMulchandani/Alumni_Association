@@ -21,6 +21,7 @@
     "mongoose": "^8.16.5",
     "multer": "^2.0.2",
     "node-cron": "^4.2.1",
+    "razorpay": "^2.9.6",
     "socket.io": "^4.8.3"
   }
 }

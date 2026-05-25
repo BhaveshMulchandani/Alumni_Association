@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import {
   GraduationCap,
   Users,
@@ -10,6 +11,30 @@ import {
 } from "lucide-react";
 
 const Home = () => {
+  const [jobsCount, setJobsCount] = useState(0);
+  const [alumniEmployers, setAlumniEmployers] = useState(0);
+  const [jobLoading, setJobLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/showjob`);
+        const jobs = response.data.jobs || [];
+        setJobsCount(jobs.length);
+        const uniqueEmployers = new Set(
+          jobs.map((job) => job.postedby?._id || job.postedby).filter(Boolean),
+        );
+        setAlumniEmployers(uniqueEmployers.size);
+      } catch (error) {
+        console.error("Failed to load job stats:", error);
+      } finally {
+        setJobLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-pink-50">
       {/* Header */}
@@ -55,9 +80,9 @@ const Home = () => {
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Bridge the gap between students and alumni. Find mentorship,
-              discover opportunities, and build lasting professional
-              relationships that shape your future.
+              {jobLoading
+                ? "Loading opportunities and alumni employers..."
+                : `Bridge the gap between students and alumni. Explore ${jobsCount} active job postings from ${alumniEmployers} hiring alumni and companies, find mentorship, and build lasting professional relationships.`}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/signup">

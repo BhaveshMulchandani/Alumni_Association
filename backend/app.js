@@ -12,6 +12,8 @@ const mentorshiproutes = require('./routes/mentorship.routes');
 const sessionroutes = require('./routes/session.routes');
 const chatroutes = require('./routes/chat.routes');
 const profileroutes = require("./routes/profile.routes")
+const donationroutes = require("./routes/donation.routes")
+const paymentroutes = require("./routes/payment.routes")
 
 const cookieparser = require('cookie-parser');
 const cors = require('cors');
@@ -40,7 +42,8 @@ app.use("/mentorship", mentorshiproutes);
 app.use("/session", sessionroutes);
 app.use("/chat", chatroutes);
 app.use("/profile",profileroutes)
-
+app.use("/donation",donationroutes)
+app.use("/payment",paymentroutes)
 // 🔥 HTTP SERVER + SOCKET.IO
 const server = http.createServer(app);
 

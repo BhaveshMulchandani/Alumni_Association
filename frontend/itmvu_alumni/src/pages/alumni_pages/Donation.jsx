@@ -1,11 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Donation_Type from "../../components/Donation_Type";
 import Donation_Amount from "../../components/Donation_Amount";
+import PaymentButton from "../../components/PaymentButton";
+import axios from "axios";
 
 const Donation = () => {
   const [amount, setamount] = useState(null);
   const [donationType, setDonationType] = useState("");
   const [message, setMessage] = useState("");
+  const [donations, setDonations] = useState([]);
+
+  useEffect(() => {
+    const fetchMyDonations = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:3000/donation/mydonations",
+          {
+            withCredentials: true,
+          },
+        );
+
+        setDonations(res.data.donations);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchMyDonations();
+  }, []);
 
   return (
     <>
@@ -41,7 +63,10 @@ const Donation = () => {
               <Donation_Amount amount={amount} setamount={setamount} />
 
               {/* Donation Type */}
-              <Donation_Type donationType={donationType} setDonationType={setDonationType} />
+              <Donation_Type
+                donationType={donationType}
+                setDonationType={setDonationType}
+              />
 
               {/* Optional Message */}
               <div className="mt-6">
@@ -58,13 +83,15 @@ const Donation = () => {
 
               {/* Proceed Button */}
               <div className="mt-6 pt-4">
-                <button
+                <PaymentButton
+                  amount={amount}
+                  donationType={donationType}
+                  message={message}
                   className="bg-pink-600 hover:bg-pink-700 text-white w-full h-14 text-lg font-semibold rounded-lg flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!amount || !donationType}
                 >
-                  Proceed to Payment
                   <i className="ri-arrow-right-line text-xl ml-2"></i>
-                </button>
+                </PaymentButton>
 
                 {amount && donationType && (
                   <p className="text-center text-gray-600 mt-3 text-base leading-relaxed">
@@ -86,40 +113,57 @@ const Donation = () => {
               <p className="text-gray-600 mt-1">
                 Your recent Contribution to the college
               </p>
-              <div className="mt-6 border border-pink-200 hover:border-pink-300 rounded-lg w-full">
-                <div>
-                  <div className="flex items-center gap-3 py-1 px-4">
-                    <span className="text-pink-600 font-bold text-3xl">
-                      ₹5,000
-                    </span>
-                    <div className="flex items-center gap-1 text-green-700 text-base">
-                      <i className="ri-checkbox-circle-line"></i>
-                      <span>Completed</span>
+                {donations.map((donation) => (
+                  <div
+                    key={donation._id}
+                    className="mt-6 border border-pink-200 hover:border-pink-300 rounded-lg w-full"
+                  >
+                    <div>
+                      <div className="flex items-center gap-3 py-1 px-4">
+                        <span className="text-pink-600 font-bold text-3xl">
+                          ₹{donation.price.amount}
+                        </span>
+
+                        <div className="flex items-center gap-1 text-green-700 text-base">
+                          <i className="ri-checkbox-circle-line"></i>
+                          <span>Completed</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-5 py-1 px-4">
+                        <span className="flex items-center gap-2">
+                          <i className="ri-building-4-line text-base text-gray-700"></i>
+
+                          <h2 className="text-base text-gray-700 capitalize">
+                            {donation.donationtype}
+                          </h2>
+                        </span>
+
+                        <span className="flex items-center gap-2">
+                          <i className="ri-calendar-line text-base text-gray-700"></i>
+
+                          <h2 className="text-base text-gray-700">
+                            {new Date(donation.createdAt).toLocaleDateString()}
+                          </h2>
+                        </span>
+                      </div>
+
+                      {donation.message && (
+                        <p className="px-4 py-2 text-gray-600 italic">
+                          "{donation.message}"
+                        </p>
+                      )}
                     </div>
                   </div>
-                  <div className="flex items-center py-1 px-4">
-                    <span className="flex items-center gap-2">
-                      <i className="ri-building-4-line text-base text-gray-700"></i>
-                      <h2 className="text-base text-gray-700">
-                        Infrastructure
-                      </h2>
-                    </span>
-                    <span className="flex items-center gap-2">
-                      <i className="ri-calendar-line text-base text-gray-700"></i>
-                      <h2 className="text-base text-gray-700">15 June 2025</h2>
-                    </span>
-                  </div>
-                </div>
+                ))}
               </div>
-              <hr className="border-t border-pink-100 mt-6 mb-4" />
-              <button className="w-full border border-pink-200 hover:border-pink-300  hover:bg-gray-50 rounded-lg text-pink-600 mt-3 p-2 text-lg">
-                View full transaction History
-              </button>
             </div>
           </div>
-          <p className="text-base italic text-gray-500 flex justify-center mt-6">"Education is the most powerful weapon which you can use to change the world." - Nelson Mandela</p>
+          <p className="text-base italic text-gray-500 flex justify-center mt-6">
+            "Education is the most powerful weapon which you can use to change
+            the world." - Nelson Mandela
+          </p>
         </div>
-      </div>
     </>
   );
 };
