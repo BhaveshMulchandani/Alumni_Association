@@ -32,13 +32,20 @@ const Login = () => {
       );
 
       if (response.status === 201) {
+
+        const role = response.data.role;
+        console.log("Login successful! User role:", role);
+
+        if(role === "admin"){
+          window.location.href = `${import.meta.env.VITE_ADMIN_URL}`;
+          return
+        }
+
+
         const profileRes = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/profile/me`,
           { withCredentials: true },
         );
-
-        const role = response.data.role;
-        console.log("Login successful! User role:", role);
 
         // 🔥 STEP 3: navigation decision
 
@@ -50,10 +57,6 @@ const Login = () => {
           role === "alumni"
             ? navigate("/alumni/dashboard")
             : navigate("/student/dashboard");
-        }
-
-        if(role === "admin"){
-          window.location.href = `${import.meta.env.VITE_ADMIN_URL}`;
         }
 
         // Clear form
