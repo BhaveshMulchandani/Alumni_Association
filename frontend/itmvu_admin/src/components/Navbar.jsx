@@ -17,7 +17,7 @@ const Navbar = () => {
         },
       );
 
-      window.location.href = "http://localhost:5173/login";
+      window.location.href = `${import.meta.env.VITE_STUDENT_URL}/login`;
     } catch (error) {
       console.log(error);
     }

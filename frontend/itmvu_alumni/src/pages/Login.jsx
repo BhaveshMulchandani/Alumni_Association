@@ -53,7 +53,7 @@ const Login = () => {
         }
 
         if(role === "admin"){
-          window.location.href = "http://localhost:5174";
+          window.location.href = `${import.meta.env.VITE_ADMIN_URL}`;
         }
 
         // Clear form
