@@ -1,41 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
+import axios from "axios";
 
 import logo from "../assets/logo.png";
 import { Link, Links } from "react-router-dom";
 
 const Navbar = () => {
-    const [search, setsearch] = useState("");
+  const handlelogout = async () => {
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/user/logout`,
+
+        {},
+
+        {
+          withCredentials: true,
+        },
+      );
+
+      window.location.href = "http://localhost:5173/login";
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-
-     <>
+    <>
       <div className="w-full bg-pink-900 h-20 flex px-4 justify-around items-center fixed z-50">
         <div>
           <img src={logo} alt="logo" className="h-13" />
         </div>
 
-        <div className="flex items-center relative">
-          <i className="ri-search-2-line text-xl absolute left-3 top-1/2 -translate-y-1/2 text-pink-900"></i>
-          <input
-            type="text"
-            placeholder="Search..."
-            className="pl-10 pr-3 py-1 rounded-md border-2 border-pink-900 outline-none text-pink-900 text-2xl "
-            value={search}
-            onChange={(e) => {
-              setsearch(e.target.value);
-            }}
-          />
-        </div>
-
         <div>
           <ul className="flex gap-7 font-semibold text-lg text-white cursor-pointer">
-            <Link to="/">
-              <li className="flex flex-col justify-center items-center">
-                Home
-                <i class="ri-home-7-fill"></i>
-              </li>
-            </Link>
-
             <Link to="/verify_user">
               <li className="flex flex-col justify-center items-center">
                 verify_user
@@ -66,13 +62,15 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <button className="bg-white text-xl text-pink-900 border-2 border-pink-900 px-3 py-1 rounded-md flex items-center">
+        <button
+          onClick={handlelogout}
+          className="bg-white text-xl text-pink-900 border-2 border-pink-900 px-3 py-1 rounded-md flex items-center"
+        >
           Logout
         </button>
       </div>
     </>
-    
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
