@@ -12,7 +12,7 @@ const Verify_User = () => {
 
   const fetchPendingUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/admin/pending-users", {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/pending-users`, {
         withCredentials: true,
       });
 
@@ -25,7 +25,7 @@ const Verify_User = () => {
   const approveUser = async (id) => {
     try {
       await axios.put(
-        `http://localhost:3000/admin/approve/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/admin/approve/${id}`,
         {},
         {
           withCredentials: true,
@@ -41,7 +41,7 @@ const Verify_User = () => {
   const rejectUser = async (id) => {
     try {
       await axios.put(
-        `http://localhost:3000/admin/reject/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/admin/reject/${id}`,
         {},
         {
           withCredentials: true,
