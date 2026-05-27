@@ -3,7 +3,7 @@ const { isloggedin,isalumni, isstudent } = require("../middlewares/user.middlewa
 const jobcontroller = require("../controllers/job.controller")
 const router = express.Router()
 
-router.post("/createjob",isloggedin,isalumni,jobcontroller.createjob)
+router.post("/createjob",isloggedin,jobcontroller.createjob)
 router.get("/showjob",jobcontroller.showjob)
 
 

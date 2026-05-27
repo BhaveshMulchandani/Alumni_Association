@@ -27,6 +27,7 @@ const signup = async (req, res) => {
             email,
             password: hashpassword,
             role,
+            status:"pending"
         })
 
         return res.status(201).json({
@@ -64,6 +65,10 @@ const login = async (req, res) => {
             return res.status(401).json({ message: "enter valid credentials" })
         }
 
+        if(user.status !== "approved"){
+            return res.status(403).json({ message: `Your account is ${user.status}. Please contact support.` })
+        }
+        
         let token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET)
 
         res.cookie("token", token, {

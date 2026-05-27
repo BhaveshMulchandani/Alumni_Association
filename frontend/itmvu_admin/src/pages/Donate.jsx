@@ -1,7 +1,33 @@
-import React from "react";
+import  React,{useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import axios from "axios";
 
 const Donate = () => {
+  const [donations, setdonations] = useState([]);
+  const [totaldonation, settotaldonation] = useState(0);
+
+  const fetchdonations = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/donation/getalldonations`,
+
+        {
+          withCredentials: true,
+        },
+      );
+
+      setdonations(response.data.donations);
+
+      settotaldonation(response.data.totaldonation);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchdonations();
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -20,7 +46,7 @@ const Donate = () => {
             <div className="mt-6 p-6 rounded-md bg-pink-50 border border-pink-200 hover:border-pink-300">
               <div className="flex flex-col items-center justify-center space-y-1">
                 <span className="text-pink-600 font-bold text-3xl">
-                  ₹26,000
+                  {totaldonation}
                 </span>
                 <span className="text-gray-600 text-base">Total Donations</span>
               </div>
@@ -53,25 +79,33 @@ const Donate = () => {
                 </tr>
 
                 <tbody>
-                  <tr>
-                    <td className="text-black py-3 font-medium">Bhavesh Mulchandani</td>
-                    <td className=" text-pink-600 font-medium py-3">₹5,000</td>
-                    <td>
-                      <span className="">
-                       Annual Scholarship Fund
-                      </span>
-                    </td>
-                    <td className="py-3">
-                      <span className="text-gray-600">
-                       Dec 15, 2024
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan="5">
-                      <hr className="my-2 border-gray-200" />
-                    </td>
-                  </tr>
+                  {donations.map((donation) => (
+                    <React.Fragment key={donation._id}>
+                      <tr>
+                        <td className="text-black py-3 font-medium">
+                          {donation.donorName?.username}
+                        </td>
+
+                        <td className="text-pink-600 font-medium py-3">
+                          ₹{donation.price?.amount}
+                        </td>
+
+                        <td>{donation.donationtype}</td>
+
+                        <td className="py-3">
+                          <span className="text-gray-600">
+                            {new Date(donation.createdAt).toDateString()}
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colSpan="5">
+                          <hr className="my-2 border-gray-200" />
+                        </td>
+                      </tr>
+                    </React.Fragment>
+                  ))}
                 </tbody>
               </table>
             </div>

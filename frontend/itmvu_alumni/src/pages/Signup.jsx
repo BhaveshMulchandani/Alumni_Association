@@ -8,6 +8,7 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    passingyear: "",
     password: "",
     confirmPassword: "",
   });
@@ -26,6 +27,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setError("");
     setLoading(true);
 
@@ -35,15 +37,15 @@ const Signup = () => {
       return;
     }
 
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.password || !role || !formData.passingYear) {
+    // validation
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.password ||
+      !formData.passingyear ||
+      !role
+    ) {
       setError("Please fill in all required fields");
-      setLoading(false);
-      return;
-    }
-
-    if (role === "student" && !formData.department) {
-      setError("Department is required for students");
       setLoading(false);
       return;
     }
@@ -54,25 +56,34 @@ const Signup = () => {
         email: formData.email,
         password: formData.password,
         role,
-        passingyear: formData.passingYear,
-        ...(role === "student" && { stream: formData.department })
+        passingyear: formData.passingyear,
       };
 
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/signup`, payload, {
-        withCredentials: true
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/user/signup`,
+        payload,
+        {
+          withCredentials: true,
+        },
+      );
 
-      if (response.status === 200) {
-        // Clear form fields
+      // backend 201 bhej raha h
+      if (response.status === 201) {
+        alert(
+          "Account created successfully! Please wait for admin approval before logging in.",
+        );
+
+        // reset form
         setFormData({
           name: "",
           email: "",
+          passingyear: "",
           password: "",
           confirmPassword: "",
         });
+
         setRole("");
-        
-        // Redirect to login
+
         navigate("/login");
       }
     } catch (err) {
@@ -121,9 +132,7 @@ const Signup = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Role Selection */}
                 <div className="space-y-3">
-                  <label className="text-sm font-medium">
-                    I am a:
-                  </label>
+                  <label className="text-sm font-medium">I am a:</label>
                   <div className="grid grid-cols-2 gap-3">
                     <button
                       type="button"
@@ -157,10 +166,7 @@ const Signup = () => {
                 {/* Common Fields */}
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <label
-                      htmlFor="name"
-                      className="text-sm font-medium"
-                    >
+                    <label htmlFor="name" className="text-sm font-medium">
                       Full Name
                     </label>
                     <input
@@ -177,10 +183,7 @@ const Signup = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <label
-                      htmlFor="email"
-                      className="text-sm font-medium"
-                    >
+                    <label htmlFor="email" className="text-sm font-medium">
                       Email Address
                     </label>
                     <input
@@ -198,9 +201,27 @@ const Signup = () => {
 
                   <div className="space-y-2">
                     <label
-                      htmlFor="password"
+                      htmlFor="passingyear"
                       className="text-sm font-medium"
                     >
+                      Passing Year
+                    </label>
+
+                    <input
+                      id="passingyear"
+                      type="number"
+                      placeholder="Enter passing year"
+                      value={formData.passingyear}
+                      onChange={(e) =>
+                        handleInputChange("passingyear", e.target.value)
+                      }
+                      className="w-full h-12 px-3 py-2 border border-pink-200 rounded-md focus:border-pink-400 focus:outline-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="password" className="text-sm font-medium">
                       Password
                     </label>
                     <div className="relative">

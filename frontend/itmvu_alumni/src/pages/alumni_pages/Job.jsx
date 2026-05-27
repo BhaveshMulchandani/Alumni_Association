@@ -31,7 +31,6 @@ const Job = () => {
           withCredentials: true,
         }
       );
-      console.log("job posted successfully", res.data);
     } catch (error) {
       console.log("failed to create job", error);
     }

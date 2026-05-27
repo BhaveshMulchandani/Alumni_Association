@@ -38,9 +38,11 @@ const Login = () => {
         );
 
         const role = response.data.role;
+        console.log("Login successful! User role:", role);
 
         // 🔥 STEP 3: navigation decision
-        if (!profileRes.data.profile) {
+
+        if ((role === "alumni" || role === "student") && !profileRes.data.profile) {
           // ❌ profile nahi bana
           navigate("/createprofile");
         } else {
@@ -48,6 +50,10 @@ const Login = () => {
           role === "alumni"
             ? navigate("/alumni/dashboard")
             : navigate("/student/dashboard");
+        }
+
+        if(role === "admin"){
+          window.location.href = "http://localhost:5174";
         }
 
         // Clear form

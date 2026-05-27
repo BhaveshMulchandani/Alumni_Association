@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
+import axios from "axios";
 
 const Event = () => {
     const [eventname, seteventname] = useState("");
@@ -10,6 +11,43 @@ const Event = () => {
     const [endtime, setendtime] = useState('');
     const [description, setdescription] = useState("");
     const [url, seturl] = useState("");
+
+    const handleSubmit = async (e) => {
+
+   e.preventDefault();
+
+   try {
+
+      const payload = {
+
+         eventname,
+         eventdate,
+         location,
+         eventtype,
+         starttime,
+         endtime,
+         description,
+         url
+      };
+
+      await axios.post(
+
+        `${import.meta.env.VITE_BACKEND_URL}/event/create`,
+
+        payload,
+
+        {
+          withCredentials: true
+        }
+      );
+
+      alert("Event created successfully");
+
+   } catch (error) {
+
+      console.log(error.message);
+   }
+};
   return (
     <>
       <Navbar />
@@ -38,9 +76,7 @@ const Event = () => {
               <form
                 action=""
                 className="space-y-6"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                }}
+                onSubmit={handleSubmit}
               >
                 <div className="flex flex-col space-y-2">
                   <label className="text-gray-700 font-medium">

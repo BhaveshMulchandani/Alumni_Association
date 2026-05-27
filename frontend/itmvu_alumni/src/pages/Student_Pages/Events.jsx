@@ -1,6 +1,24 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Events = () => {
+  const [events, setevents] = useState([]);
+  useEffect(() => {
+    fetchevents();
+  }, []);
+
+  const fetchevents = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/event/all`,
+      );
+
+      setevents(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-pink-50 px-16 py-10">
@@ -15,76 +33,55 @@ const Events = () => {
             </h4>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
-            <div className="bg-white rounded-lg p-4">
-              <div className="flex items-center justify-between">
-                <span className="bg-blue-100 text-blue-600 font-medium text-sm rounded-full p-2">college event</span>
-                <i className="ri-price-tag-3-line transform scale-x-[-1]  text-gray-600 font-medium text-xl"></i>
+            {events.map((event) => (
+              <div key={event._id} className="bg-white rounded-lg p-4">
+                <div className="flex items-center justify-between">
+                  <span className="bg-pink-100 text-pink-600 font-medium text-sm rounded-full p-2">
+                    {event.eventtype}
+                  </span>
+                </div>
+
+                <div className="mt-2 space-y-3">
+                  <h1 className="text-gray-800 text-xl font-semibold">
+                    {event.eventname}
+                  </h1>
+
+                  <div className="flex gap-2">
+                    <i className="ri-calendar-line text-pink-600"></i>
+
+                    <h4 className="text-gray-600">
+                      {new Date(event.eventdate).toDateString()}
+                    </h4>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <i className="ri-time-line text-pink-600"></i>
+
+                    <h4 className="text-gray-600">
+                      {event.starttime}
+
+                      {event.endtime && ` - ${event.endtime}`}
+                    </h4>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <i className="ri-map-pin-line text-pink-600"></i>
+
+                    <h4 className="text-gray-600">{event.location}</h4>
+                  </div>
+
+                  <p className="text-gray-600">{event.description}</p>
+                </div>
+
+                {event.url && (
+                  <a href={event.url} target="_blank" className="block mt-4">
+                    <button className="p-1 font-medium text-white w-full bg-gradient-to-t from-pink-400 to-pink-500 rounded-md">
+                      Register Now
+                    </button>
+                  </a>
+                )}
               </div>
-              <div className="mt-2 space-x-1 space-y-3">
-                <h1 className="text-gray-800 text-xl font-semibold">Annual Tech Summit 2025</h1>
-                <div className="flex gap-2"><i className="ri-calendar-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">March 15, 2024</h4></div>
-                <div className="flex gap-2"><i className="ri-time-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">10:00 AM - 4:00 PM</h4></div>
-                <div className="flex gap-2"><i class="ri-map-pin-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">Main Auditorium</h4></div>
-                <p className="text-gray-600 leading-relaxed text-base font-light">Join us for an exciting day of technology presentations, networking opportunities, and innovation showcases from industry</p>
-              </div>
-              <button className=" mt-4 p-1 font-medium text-white w-full bg-gradient-to-t from-pink-400 to-pink-500 rounded-md">Register Now</button>
-            </div>
-            <div className="bg-white rounded-lg p-4">
-              <div className="flex items-center justify-between">
-                <span className="bg-emerald-100 text-green-600 font-medium text-sm rounded-full p-2">Hackathon</span>
-                <i className="ri-price-tag-3-line transform scale-x-[-1]  text-gray-600 font-medium text-xl"></i>
-              </div>
-              <div className="mt-2 space-x-1 space-y-3">
-                <h1 className="text-gray-800 text-xl font-semibold">Annual Tech Summit 2025</h1>
-                <div className="flex gap-2"><i className="ri-calendar-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">March 15, 2024</h4></div>
-                <div className="flex gap-2"><i className="ri-time-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">10:00 AM - 4:00 PM</h4></div>
-                <div className="flex gap-2"><i class="ri-map-pin-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">Main Auditorium</h4></div>
-                <p className="text-gray-600 leading-relaxed text-base font-light">Join us for an exciting day of technology presentations, networking opportunities, and innovation showcases from industry</p>
-              </div>
-              <button className=" mt-4 p-1 font-medium text-white w-full bg-gradient-to-t from-pink-400 to-pink-500 rounded-md">Register Now</button>
-            </div>
-            <div className="bg-white rounded-lg p-4">
-              <div className="flex items-center justify-between">
-                <span className="bg-violet-100 text-purple-600 font-medium text-sm rounded-full p-2">workshop</span>
-                <i className="ri-price-tag-3-line transform scale-x-[-1]  text-gray-600 font-medium text-xl"></i>
-              </div>
-              <div className="mt-2 space-x-1 space-y-3">
-                <h1 className="text-gray-800 text-xl font-semibold">Annual Tech Summit 2025</h1>
-                <div className="flex gap-2"><i className="ri-calendar-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">March 15, 2024</h4></div>
-                <div className="flex gap-2"><i className="ri-time-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">10:00 AM - 4:00 PM</h4></div>
-                <div className="flex gap-2"><i class="ri-map-pin-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">Main Auditorium</h4></div>
-                <p className="text-gray-600 leading-relaxed text-base font-light">Join us for an exciting day of technology presentations, networking opportunities, and innovation showcases from industry</p>
-              </div>
-              <button className=" mt-4 p-1 font-medium text-white w-full bg-gradient-to-t from-pink-400 to-pink-500 rounded-md">Register Now</button>
-            </div>
-            <div className="bg-white rounded-lg p-4">
-              <div className="flex items-center justify-between">
-                <span className="bg-pink-100 text-pink-600 font-medium text-sm rounded-full p-2">competition</span>
-                <i className="ri-price-tag-3-line transform scale-x-[-1]  text-gray-600 font-medium text-xl"></i>
-              </div>
-              <div className="mt-2 space-x-1 space-y-3">
-                <h1 className="text-gray-800 text-xl font-semibold">Annual Tech Summit 2025</h1>
-                <div className="flex gap-2"><i className="ri-calendar-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">March 15, 2024</h4></div>
-                <div className="flex gap-2"><i className="ri-time-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">10:00 AM - 4:00 PM</h4></div>
-                <div className="flex gap-2"><i class="ri-map-pin-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">Main Auditorium</h4></div>
-                <p className="text-gray-600 leading-relaxed text-base font-light">Join us for an exciting day of technology presentations, networking opportunities, and innovation showcases from industry</p>
-              </div>
-              <button className=" mt-4 p-1 font-medium text-white w-full bg-gradient-to-t from-pink-400 to-pink-500 rounded-md">Register Now</button>
-            </div>
-            <div className="bg-white rounded-lg p-4">
-              <div className="flex items-center justify-between">
-                <span className="bg-orange-100 text-orange-600 font-medium text-sm rounded-full p-2">seminar</span>
-                <i className="ri-price-tag-3-line transform scale-x-[-1]  text-gray-600 font-medium text-xl"></i>
-              </div>
-              <div className="mt-2 space-x-1 space-y-3">
-                <h1 className="text-gray-800 text-xl font-semibold">Annual Tech Summit 2025</h1>
-                <div className="flex gap-2"><i className="ri-calendar-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">March 15, 2024</h4></div>
-                <div className="flex gap-2"><i className="ri-time-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">10:00 AM - 4:00 PM</h4></div>
-                <div className="flex gap-2"><i class="ri-map-pin-line text-pink-600 text-base"></i><h4 className="text-gray-600 text-base">Main Auditorium</h4></div>
-                <p className="text-gray-600 leading-relaxed text-base font-light">Join us for an exciting day of technology presentations, networking opportunities, and innovation showcases from industry</p>
-              </div>
-              <button className=" mt-4 p-1 font-medium text-white w-full bg-gradient-to-t from-pink-400 to-pink-500 rounded-md">Register Now</button>
-            </div>
+            ))}
           </div>
         </div>
       </div>

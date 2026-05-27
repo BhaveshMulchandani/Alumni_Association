@@ -60,9 +60,17 @@ const getalldonations = async (req, res) => {
             })
         }
 
+        const totaldonation = donations.reduce(
+
+         (acc, curr) => acc + curr.price.amount,
+
+         0
+      );
+
         return res.status(200).json({
             message: "Donations fetched successfully",
-            donations
+            donations,
+            totaldonation
         })
 
     } catch (error) {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
+import axios from "axios";
 
 const Job = () => {
   const [jobtitle, setjobtitle] = useState("");
@@ -10,6 +11,39 @@ const Job = () => {
   const [salary, setsalary] = useState(10000);
   const [description, setdescription] = useState("");
   const [url, seturl] = useState("");
+
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/job/createjob`,
+        {
+          jobtitle,
+          companyname,
+          location,
+          jobtype,
+          experience,
+          salary,
+          jobdescription: description,
+          applicationlink: url,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+    } catch (error) {
+      console.log("failed to create job", error);
+    }
+    setjobtitle("");
+    setcompanyname("");
+    setlocation("");
+    setjobtype("Full-Time");
+    setexperience(0);
+    setsalary(25000);
+    setdescription("");
+    seturl("");
+  };
   return (
     <>
       <Navbar />
@@ -38,9 +72,7 @@ const Job = () => {
               <form
                 action=""
                 className="space-y-6"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                }}
+                onSubmit={handlesubmit}
               >
                 <div className="flex flex-col space-y-2">
                   <label className="text-gray-700 font-medium">

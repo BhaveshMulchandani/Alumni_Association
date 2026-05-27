@@ -1,7 +1,58 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Verify_User = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetchPendingUsers();
+  }, []);
+
+  const fetchPendingUsers = async () => {
+    try {
+      const res = await axios.get("http://localhost:3000/admin/pending-users", {
+        withCredentials: true,
+      });
+
+      setUsers(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const approveUser = async (id) => {
+    try {
+      await axios.put(
+        `http://localhost:3000/admin/approve/${id}`,
+        {},
+        {
+          withCredentials: true,
+        },
+      );
+
+      fetchPendingUsers();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const rejectUser = async (id) => {
+    try {
+      await axios.put(
+        `http://localhost:3000/admin/reject/${id}`,
+        {},
+        {
+          withCredentials: true,
+        },
+      );
+
+      fetchPendingUsers();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <Navbar />
@@ -41,26 +92,45 @@ const Verify_User = () => {
               </td>
             </tr>
             <tbody>
-              <tr className="text-black">
-                <td className="py-3">Bhavesh Mulchandani</td>
-                <td className="py-3">abcd@abcd.com</td>
-                <td>
-                  <span className="bg-gray-100 px-3 py-1 rounded-2xl">
-                    Alumni
-                  </span>
-                </td>
-                <td className="py-3">2019</td>
-                <td className="py-3">
-                  <button className="bg-pink-600 text-white px-3 py-1 rounded-md flex items-center gap-1">
-                    <i className="ri-checkbox-circle-line"></i> Approve
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan="5">
-                  <hr className="my-2 border-gray-200" />
-                </td>
-              </tr>
+              {users.map((user) => (
+                <React.Fragment key={user._id}>
+                  <tr className="text-black">
+                    <td className="py-3">{user.username}</td>
+
+                    <td className="py-3">{user.email}</td>
+
+                    <td>
+                      <span className="bg-gray-100 px-3 py-1 rounded-2xl">
+                        {user.role}
+                      </span>
+                    </td>
+
+                    <td className="py-3">2019</td>
+
+                    <td className="py-3 flex gap-2">
+                      <button
+                        onClick={() => approveUser(user._id)}
+                        className="bg-green-600 text-white px-3 py-1 rounded-md"
+                      >
+                        Approve
+                      </button>
+
+                      <button
+                        onClick={() => rejectUser(user._id)}
+                        className="bg-red-600 text-white px-3 py-1 rounded-md"
+                      >
+                        Reject
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colSpan="5">
+                      <hr className="my-2 border-gray-200" />
+                    </td>
+                  </tr>
+                </React.Fragment>
+              ))}
             </tbody>
           </table>
         </div>
