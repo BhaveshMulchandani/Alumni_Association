@@ -14,7 +14,7 @@ const Donation = () => {
     const fetchMyDonations = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3000/donation/mydonations",
+          `${import.meta.env.VITE_BACKEND_URL}/donation/mydonations`,
           {
             withCredentials: true,
           },

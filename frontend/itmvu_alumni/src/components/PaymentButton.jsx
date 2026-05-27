@@ -6,7 +6,7 @@ function PaymentButton({ amount, donationType, message }) {
     try {
       // Step 1: Create order on backend
       const { data: order } = await axios.post(
-        "http://localhost:3000/payment/createorder",
+        `${import.meta.env.VITE_BACKEND_URL}/payment/createorder`,
         {
           amount,
           donationtype: donationType,
@@ -28,7 +28,7 @@ function PaymentButton({ amount, donationType, message }) {
             response;
           try {
             await axios.post(
-              "http://localhost:3000/payment/verify",
+              `${import.meta.env.VITE_BACKEND_URL}/payment/verify`,
               {
                 razorpayOrderId: razorpay_order_id,
                 razorpayPaymentId: razorpay_payment_id,
