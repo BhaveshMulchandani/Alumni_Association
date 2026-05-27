@@ -27,7 +27,7 @@ const signup = async (req, res) => {
             email,
             password: hashpassword,
             role,
-            status:"pending"
+            status: "pending"
         })
 
         return res.status(201).json({
@@ -38,7 +38,7 @@ const signup = async (req, res) => {
     } catch (error) {
         console.log(error);
 
-        return res.status(500).json({ message: "internal server error",error })
+        return res.status(500).json({ message: "internal server error", error })
 
     }
 
@@ -65,14 +65,19 @@ const login = async (req, res) => {
             return res.status(401).json({ message: "enter valid credentials" })
         }
 
-        if(user.status !== "approved"){
+        if (user.status !== "approved") {
             return res.status(403).json({ message: `Your account is ${user.status}. Please contact support.` })
         }
-        
+
         let token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET)
 
         res.cookie("token", token, {
             expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+            httpOnly: true,
+
+            secure: true,
+
+            sameSite: "none"
         })
 
         return res.status(201).json({ message: 'user successfully loggedin !!', role: user.role })
