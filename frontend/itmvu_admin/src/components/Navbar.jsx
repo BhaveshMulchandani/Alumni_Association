@@ -32,7 +32,7 @@ const Navbar = () => {
 
         <div>
           <ul className="flex gap-7 font-semibold text-lg text-white cursor-pointer">
-            <Link to="/verify_user">
+            <Link to="/">
               <li className="flex flex-col justify-center items-center">
                 verify_user
                 <i class="ri-group-line"></i>
